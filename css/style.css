@@ -12,7 +12,12 @@ html {
 .container {
   height: 100vh;
   width: 100vw;
-  background-color: lightgray; }
+  background-color: lightgray;
+  background-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/raining.jpg);
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
 .column__box {
   display: grid;
@@ -20,30 +25,113 @@ html {
   align-items: center;
   justify-items: center;
   height: 100%;
-  width: 100%;
-  background-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/raining.jpg);
-  background-size: cover; }
+  width: 60%; }
   .column__box--1 {
-    background-color: lightblue; }
+    width: 50%; }
+  .column__box--2 {
+    display: flex;
+    flex-direction: column;
+    justify-self: start; }
+  .column__box--3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white; }
+  .column__box--4 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%; }
+  .column__box--5 {
+    display: block;
+    font-size: 2rem; }
 
 .search {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 10rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 30%;
-  height: 5rem;
-  padding: 0rem 3rem; }
+  padding: 1rem 1rem 1rem 2rem; }
   .search__field {
-    border: none; }
+    border: none;
+    font-size: 1.5rem;
+    background: none;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%; }
+  .search__field:focus {
+    outline: none; }
   .search__btn {
-    width: 5rem;
-    height: 5rem;
+    width: 3rem;
+    height: 3rem;
     border: none;
     background: none; }
   .search__icon {
     width: 100%;
     height: 100%;
-    color: grey;
-    font-size: 1rem; }
+    fill: grey; }
+
+.home {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 2rem; }
+  .home__icon {
+    width: 3rem;
+    height: 3rem;
+    fill: white; }
+  .home__time {
+    color: white;
+    font-size: 1.5rem; }
+
+.image_container {
+  width: 10rem;
+  height: 10rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.message__icon {
+  width: 3rem;
+  height: 3rem;
+  fill: white; }
+
+.cloud {
+  width: 15rem;
+  height: 15rem; }
+
+.todayTemp {
+  font-size: 10rem; }
+
+.degree {
+  font-size: 4rem;
+  align-self: flex-start; }
+
+.unit {
+  font-size: 3.5rem;
+  margin: 1rem; }
+
+.weather__condition {
+  font-size: 2.5rem;
+  align-self: flex-start;
+  margin: 2rem; }
+
+.message__icon {
+  align-self: flex-start;
+  margin-top: 2rem; }
+
+.feels {
+  display: flex; }
+  .feels__icon {
+    width: 3rem;
+    height: 3rem;
+    fill: lightgray;
+    opacity: 0.7;
+    margin-right: 0.5rem; }
+  .feels__like {
+    font-size: 1.5rem;
+    color: white; }

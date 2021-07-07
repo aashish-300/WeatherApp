@@ -1,61 +1,185 @@
 *,
 *::after,
-*::before{
-    margin:0;
-    padding:0;
-    box-sizing: inherit;
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
 }
 
-html{
-    box-sizing: border-box;
-    font-size: 62.5%;
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
 }
 
-.container{
-    height:100vh;
-    width:100vw;
-    background-color: lightgray;
+.container {
+  height: 100vh;
+  width: 100vw;
+  background-color: lightgray;
+  background-image: linear-gradient(
+      to bottom right,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url(../images/raining.jpg);
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.column__box{
-    display:grid;
-    grid-template-rows: repeat(5,1fr);
-    align-items:center;
-    justify-items:center;
-    height:100%;
-    width:100%;
-    background-image:linear-gradient(to bottom right,rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(../images/raining.jpg);
-    background-size: cover;
+.column__box {
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  align-items: center;
+  justify-items: center;
+  height: 100%;
+  width: 60%;
 
-    &--1{
-        background-color: lightblue;
-    }
-}
-
-.search{
-    background-color: #fff;
-    border-radius: 10rem;
+  &--1 {
+    width: 50%;
+  }
+  &--2 {
     display: flex;
+    flex-direction: column;
+    justify-self: start;
+  }
+  &--3 {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content:space-between;
-    width:30%;
-    height: 5rem;
-    padding:0rem 3rem;
+    color: white;
+  }
+  &--4 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+  }
+  &--5 {
+    display: block;
+    font-size: 2rem;
+  }
+  &--6 {
+  }
+}
 
-    &__field{
-        border:none;
-    }
-    &__btn{
-        width:5rem;
-        height:5rem;
-        border: none;
-        background: none;
-    }
-    &__icon{
-        width:100%;
-        height:100%;
-        color: grey;
-        font-size:1rem;
-    }
+.search {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem 1rem 2rem;
 
+  &__field {
+    border: none;
+    font-size: 1.5rem;
+    background: none;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
+  }
+  &__field:focus {
+    outline: none;
+  }
+  &__btn {
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    background: none;
+  }
+  &__icon {
+    width: 100%;
+    height: 100%;
+    fill: grey;
+  }
+}
+
+.home {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  font-size: 2rem;
+
+  &__icon {
+    width: 3rem;
+    height: 3rem;
+    fill: white;
+  }
+  &__location {
+  }
+  &__time {
+    color: white;
+    font-size: 1.5rem;
+  }
+
+  &__present--time {
+  }
+}
+
+//column-box--3
+.image_container {
+  width: 10rem;
+  height: 10rem;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message__icon {
+  width: 3rem;
+  height: 3rem;
+  fill: white;
+}
+
+.cloud {
+  width: 15rem;
+  height: 15rem;
+}
+
+.todayTemp {
+  font-size: 10rem;
+}
+
+.degree {
+  font-size: 4rem;
+  align-self: flex-start;
+}
+
+.unit {
+  font-size: 3.5rem;
+  margin: 1rem;
+}
+
+.weather__condition {
+  font-size: 2.5rem;
+  align-self: flex-start;
+  margin: 2rem;
+}
+
+.message__icon {
+  align-self: flex-start;
+  margin-top: 2rem;
+}
+
+.feels {
+  display: flex;
+
+  &__icon {
+    width: 3rem;
+    height: 3rem;
+    fill: lightgray;
+    opacity: 0.7;
+    margin-right: 0.5rem;
+  }
+
+  &__like {
+    font-size: 1.5rem;
+    color: white;
+  }
 }
