@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,100;1,300&display=swap" rel="stylesheet">
     <title>Weather app</title>
 </head>
 <body>
@@ -22,7 +23,7 @@
                     </form>
             </div>   
 
-            <div class="column__box--2">
+            <!-- <div class="column__box--2">
                
                 <div class="home">
                     <svg class="home__icon">
@@ -37,9 +38,28 @@
 
                 <div class="home__time">Updated as of <span class="home__present--time">9:30 AM</span></div>
 
-            </div>     
+            </div>      -->
 
             <div class="column__box--3">
+                <div class="column__box--2">
+                   
+                    <div class="home">
+                        <svg class="home__icon">
+                            <use xlink:href="./images/icons.svg#icon-home"></use>
+                        </svg>
+                        <div class="home__location">
+                            <span>Gwarko</span>
+                            ,
+                            <span>Kathmandu</span>
+                        </div>
+                    </div>
+
+                    <div class="home__time">Updated as of <span class="home__present--time">9:30 AM</span></div>
+               
+                </div>
+
+
+
                 <div class="image_container">
                     <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="cloud image" class="cloud">
                 </div>
@@ -189,7 +209,92 @@
 
             <div class="column__box--6">
                
-                <div class="day-1">
+                <div class="day">
+                    <div class="today">Today</div>
+                    <div class="today__cloud">
+                        <div class="cloud__image">
+                            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="cloud image" class="cloud__image-1">
+                        </div>
+                        <svg class="dew">
+                            <use xlink:href="./images/icons.svg#icon-raindrop"></use>
+                        </svg>
+                        <div class="humidity2">63%</div>
+                    </div>
+                    <div class="temp">
+                        <div class="temp__max">31</div>
+                        <div class="temp__min">28</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="today">Today</div>
+                    <div class="today__cloud">
+                        <div class="cloud__image">
+                            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="cloud image" class="cloud__image-1">
+                        </div>
+                        <svg class="dew">
+                            <use xlink:href="./images/icons.svg#icon-raindrop"></use>
+                        </svg>
+                        <div class="humidity2">63%</div>
+                    </div>
+                    <div class="temp">
+                        <div class="temp__max">31</div>
+                        <div class="temp__min">28</div>
+                    </div>
+                </div>
+                <div class="day">
+                    <div class="today">Today</div>
+                    <div class="today__cloud">
+                        <div class="cloud__image">
+                            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="cloud image" class="cloud__image-1">
+                        </div>
+                        <svg class="dew">
+                            <use xlink:href="./images/icons.svg#icon-raindrop"></use>
+                        </svg>
+                        <div class="humidity2">63%</div>
+                    </div>
+                    <div class="temp">
+                        <div class="temp__max">31</div>
+                        <div class="temp__min">28</div>
+                    </div>
+                </div>
+                <div class="day">
+                    <div class="today">Today</div>
+                    <div class="today__cloud">
+                        <div class="cloud__image">
+                            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="cloud image" class="cloud__image-1">
+                        </div>
+                        <svg class="dew">
+                            <use xlink:href="./images/icons.svg#icon-raindrop"></use>
+                        </svg>
+                        <div class="humidity2">63%</div>
+                    </div>
+                    <div class="temp">
+                        <div class="temp__max">31</div>
+                        <div class="temp__min">28</div>
+                    </div>
+                </div>
+                <div class="day">
+                  
+                    <div class="today">Today</div>
+                   
+                    <div class="today__cloud">
+                        <div class="cloud__image">
+                            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="cloud image" class="cloud__image-1">
+                        </div>
+                        <svg class="dew">
+                            <use xlink:href="./images/icons.svg#icon-raindrop"></use>
+                        </svg>
+                        <div class="humidity2">63%</div>
+                    </div>
+                    
+                    <div class="temp">
+                        <div class="temp__max">31</div>
+                        <div class="temp__min">28</div>
+                    </div>
+                </div>
+                <!-- </div>
+                <div class="day">
                     <div class="today">Today</div>
                     <div class="today__cloud">
                         <svg class="dew">
@@ -202,7 +307,7 @@
                     </div>
                 </div>
 
-                <div class="day-2">
+                <div class="day">
                     <div class="today">Today</div>
                     <div class="today__cloud">
                         <svg class="dew">
@@ -215,7 +320,7 @@
                     </div>
                 </div>
 
-                <div class="day-3">
+                <div class="day">
                     <div class="today">Today</div>
                     <div class="today__cloud">
                         <svg class="dew">
@@ -228,7 +333,7 @@
                     </div>
                 </div>
 
-                <div class="day-4">
+                <div class="day">
                     <div class="today">Today</div>
                     <div class="today__cloud">
                         <svg class="dew">
@@ -238,20 +343,7 @@
                             <use xlink:href="./images/icons.svg#icon-raindrop"></use>
                         </svg>
                         <div class="humidity2">63%</div>
-                    </div>
-                </div>
-
-                <div class="day-5">
-                    <div class="today">Today</div>
-                    <div class="today__cloud">
-                        <svg class="dew">
-                            <use xlink:href="./images/icons.svg#icon-raindrop"></use>
-                        </svg>
-                        <svg class="dew">
-                            <use xlink:href="./images/icons.svg#icon-raindrop"></use>
-                        </svg>
-                        <div class="humidity2">63%</div>
-                    </div>
+                    </div> -->
                 </div>
 
             </div>    

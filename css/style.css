@@ -7,13 +7,14 @@
 
 html {
   box-sizing: border-box;
-  font-size: 62.5%; }
+  font-size: 62.5%;
+  font-family: 'Roboto', sans-serif; }
 
 .container {
   height: 100vh;
   width: 100vw;
   background-color: lightgray;
-  background-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/raining.jpg);
+  background-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/clearsky.jpg);
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -21,30 +22,44 @@ html {
 
 .column__box {
   display: grid;
-  grid-template-rows: repeat(5, 1fr);
-  align-items: center;
+  grid-template-rows: repeat(5, minmax(min-content, 100px));
   justify-items: center;
   height: 100%;
-  width: 60%; }
+  width: 60%;
+  padding: 5rem 0rem 5rem 0rem; }
   .column__box--1 {
     width: 50%; }
   .column__box--2 {
     display: flex;
     flex-direction: column;
-    justify-self: start; }
+    margin-right: 4rem; }
   .column__box--3 {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white; }
+    color: white;
+    width: 100%; }
   .column__box--4 {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    width: 100%; }
+    width: 100%;
+    align-self: center; }
   .column__box--5 {
-    display: block;
-    font-size: 2rem; }
+    display: flex;
+    font-size: 2rem;
+    color: white;
+    justify-content: flex-start;
+    align-self: flex-end;
+    width: 100%;
+    transform: translateY(-5.2rem);
+    margin-left: 2rem; }
+  .column__box--6 {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-around;
+    transform: translateY(-5rem); }
 
 .search {
   background-color: rgba(255, 255, 255, 0.7);
@@ -82,15 +97,19 @@ html {
   .home__icon {
     width: 3rem;
     height: 3rem;
-    fill: white; }
+    fill: white;
+    margin-right: 1rem;
+    margin-bottom: 1rem; }
   .home__time {
     color: white;
-    font-size: 1.5rem; }
+    font-size: 1.5rem;
+    align-self: column; }
 
 .image_container {
   width: 10rem;
   height: 10rem;
   overflow: hidden;
+  margin-right: 2rem;
   display: flex;
   align-items: center;
   justify-content: center; }
@@ -118,7 +137,7 @@ html {
 .weather__condition {
   font-size: 2.5rem;
   align-self: flex-start;
-  margin: 2rem; }
+  margin: 2rem 2rem 0rem 2rem; }
 
 .message__icon {
   align-self: flex-start;
@@ -131,7 +150,45 @@ html {
     height: 3rem;
     fill: lightgray;
     opacity: 0.7;
-    margin-right: 0.5rem; }
+    margin-right: 0.75rem; }
   .feels__like {
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: white; }
+
+.day {
+  width: 15rem;
+  height: 18rem;
+  font-size: 2rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 1rem;
+  padding: 0rem 0rem 0rem 0rem; }
+
+.today__cloud {
+  display: flex;
+  align-items: center; }
+
+.cloud__image {
+  width: 4rem;
+  height: 4rem;
+  overflow: hidden; }
+  .cloud__image-1 {
+    width: 8rem;
+    height: 8rem;
+    transform: translateX(-2rem) translateY(-1rem); }
+
+.dew {
+  fill: white;
+  height: 2rem;
+  width: 2rem; }
+
+.temp {
+  font-size: 3rem; }
+  .temp__max {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start; }
