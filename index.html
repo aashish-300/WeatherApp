@@ -48,9 +48,9 @@
                             <use xlink:href="./images/icons.svg#icon-home"></use>
                         </svg>
                         <div class="home__location">
-                            <span>Gwarko</span>
+                            <span class="home__ward">Gwarko</span>
                             ,
-                            <span>Kathmandu</span>
+                            <span class="home__city">Kathmandu</span>
                         </div>
                     </div>
 
@@ -88,7 +88,7 @@
 
                     <div class="feels__like">
                         <div class="feels__like--name">feels like</div>
-                        <div class="feels__like--value">33</div>
+                        <div class="feels__like--value" id="feelsLike">33</div>
                     </div>
                 </div>
 
@@ -98,8 +98,8 @@
                     </svg>
 
                     <div class="feels__like">
-                        <div class="feels__like--name">feels like</div>
-                        <div class="feels__like--value">33</div>
+                        <div class="feels__like--name">Wind speed</div>
+                        <div class="feels__like--value" ><span id="windSpeed">5</span> m/s</div>
                     </div>
                 </div>
 
@@ -109,8 +109,8 @@
                     </svg>
 
                     <div class="feels__like">
-                        <div class="feels__like--name">feels like</div>
-                        <div class="feels__like--value">33</div>
+                        <div class="feels__like--name">Visibility</div>
+                        <div class="feels__like--value"><span id="visibility">8</span> Km</div>
                     </div>
                 </div>
 
@@ -120,8 +120,8 @@
                     </svg>
 
                     <div class="feels__like">
-                        <div class="feels__like--name">feels like</div>
-                        <div class="feels__like--value">33</div>
+                        <div class="feels__like--name">Humidity</div>
+                        <div class="feels__like--value"><span id="humidity">80</span>%</div>
                     </div>
                 </div>
 
@@ -131,8 +131,8 @@
                     </svg>
 
                     <div class="feels__like">
-                        <div class="feels__like--name">feels like</div>
-                        <div class="feels__like--value">33</div>
+                        <div class="feels__like--name">Pressure</div>
+                        <div class="feels__like--value"><span id="pressure">1000</span> mb</div>
                     </div>
                 </div>
 
@@ -142,8 +142,8 @@
                     </svg>
 
                     <div class="feels__like">
-                        <div class="feels__like--name">feels like</div>
-                        <div class="feels__like--value">33</div>
+                        <div class="feels__like--name">Dew Point</div>
+                        <div class="feels__like--value"><span id="dewPoint">27</span></div>
                     </div>
                 </div>
 <!--                 
@@ -352,6 +352,6 @@
 
     </div>
 
-    <script type="module" src="./script.js"></script>
+    <script type="module" src="./index.js"></script>
 </body>
 </html>
