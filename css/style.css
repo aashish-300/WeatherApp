@@ -188,7 +188,7 @@ html {
 
 .temp {
   font-size: 3rem; }
-  .temp__max {
+  /* .temp__max {
     margin-bottom: 1rem;
     display: flex;
-    align-items: flex-start; }
+    align-items: flex-start; } */
