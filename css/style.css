@@ -152,7 +152,7 @@ html {
     opacity: 0.7;
     margin-right: 0.75rem; }
   .feels__like {
-    font-size: 2rem;
+    font-size: 1.75rem;
     color: white; }
 
 .day {
@@ -188,7 +188,7 @@ html {
 
 .temp {
   font-size: 3rem; }
-  /* .temp__max {
+  .temp__max {
     margin-bottom: 1rem;
     display: flex;
-    align-items: flex-start; } */
+    align-items: flex-start; }

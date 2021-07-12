@@ -53,15 +53,39 @@ const day5 = document.querySelector('.day5');
 
 const state = {};
 
+async function success(position){ 
+    console.log(position);
+    const {latitude , longitude} = position.coords;
+    console.log(latitude, longitude);
+    state.lat = latitude;
+    state.long = longitude;
+    await getDataByCord();
+    currentTime();
+    renderResult();
+};
+
+function error() { 
+    alert('unable to retrieve location');
+}
+
+
+
 window.onload = async() => { 
-    state.query = 'norwich';
-    searchData();
+    if(!navigator.geolocation) {
+        console.log('Geolocation is not supported by your browser');
+      } else {
+        console.log('Locating…');
+        console.log(navigator.geolocation);
+        navigator.geolocation.getCurrentPosition(success,error);
+      }
 }
 
 searchForm.addEventListener('submit', async(e) => {
     state.query = searchInput.value;
     searchInput.value = '';
     console.log(state.query);
+    console.log("submitted");
+    console.log(state);
     searchData();
 })
 
@@ -78,10 +102,7 @@ const searchData = async() => {
     }
 }
 
-const getResult = async() => {
-    console.log(apiKey,"defined");
-
-    //get data from api using city name
+const getDataByCity = async() => { 
     const data = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${state.query}&appid=${apiKey}`).then(e =>{ return e.json();});
     const latlong = data.city.coord;
    
@@ -91,9 +112,20 @@ const getResult = async() => {
     // state.data = data;
     state.Country = data.city.country;
     state.City = data.city.name;
+};
 
+const getDataByCord = async() => {
     const weatherDaily = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${state.lat}&lon=${state.long}&appid=${apiKey}`).then(e => {return e.json();});
-    // console.log(weatherDaily);
+    console.log(weatherDaily.timezone);
+    if(!state.city){
+        const place = weatherDaily.timezone;
+        const word = place.split('/');
+        console.log(word[1]);
+        state.query = word[1];
+        await getDataByCity();
+    }
+   
+
    
     //store data in global object state
     const {current, daily} = weatherDaily;
@@ -135,6 +167,70 @@ const getResult = async() => {
     state.day3Min = Math.round(daily[2].temp.min - 273);
     state.day4Min = Math.round(daily[3].temp.min - 273);
     state.day5Min = Math.round(daily[4].temp.min - 273);
+};
+
+
+const getResult = async() => {
+    console.log(apiKey,"defined");
+
+    //get data from api using city name
+
+    // const data = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${state.query}&appid=${apiKey}`).then(e =>{ return e.json();});
+    // const latlong = data.city.coord;
+   
+    // //store data in global object state
+    // state.lat = latlong.lat;
+    // state.long = latlong.lon;
+    // // state.data = data;
+    // state.Country = data.city.country;
+    // state.City = data.city.name;
+
+    await getDataByCity();
+    await getDataByCord();
+
+    // const weatherDaily = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${state.lat}&lon=${state.long}&appid=${apiKey}`).then(e => {return e.json();});
+    // // console.log(weatherDaily);
+   
+    // //store data in global object state
+    // const {current, daily} = weatherDaily;
+    // // state.weatherDaily = weatherDaily;
+    // state.CurrentTemp = Math.round(current.temp-273);
+    // state.WeatherCondtion = current.weather[0].description;
+    // state.FeelsLike = Math.round(current.feels_like-273);
+    // state.WindSpeed = current.wind_speed;
+    // state.Visibility = current.visibility/1000;
+    // state.Humidity = current.humidity;
+    // state.Pressure = current.pressure;
+    // state.DewPoint = Math.round(current.dew_point-273);
+    // state.Icon = current.weather[0].icon;
+
+    // //5days forecast cloud icon
+    // state.day1CloudIcon = daily[0].weather[0].icon;
+    // state.day2CloudIcon = daily[1].weather[0].icon;
+    // state.day3CloudIcon = daily[2].weather[0].icon;
+    // state.day4CloudIcon = daily[3].weather[0].icon;
+    // state.day5CloudIcon = daily[4].weather[0].icon;
+
+    // //5 days humidity data
+    // state.day1Humidity = daily[0].humidity;
+    // state.day2Humidity = daily[1].humidity;
+    // state.day3Humidity = daily[2].humidity;
+    // state.day4Humidity = daily[3].humidity;
+    // state.day5Humidity = daily[4].humidity;
+
+    // //5days max temperature
+    // state.day1Max = Math.round(daily[0].temp.max - 273);
+    // state.day2Max = Math.round(daily[1].temp.max - 273);
+    // state.day3Max = Math.round(daily[2].temp.max - 273);
+    // state.day4Max = Math.round(daily[3].temp.max - 273);
+    // state.day5Max = Math.round(daily[4].temp.max - 273);
+
+    // //5days min temperature
+    // state.day1Min = Math.round(daily[0].temp.min - 273);
+    // state.day2Min = Math.round(daily[1].temp.min - 273);
+    // state.day3Min = Math.round(daily[2].temp.min - 273);
+    // state.day4Min = Math.round(daily[3].temp.min - 273);
+    // state.day5Min = Math.round(daily[4].temp.min - 273);
 }
 
 const renderResult = () => { 
@@ -155,6 +251,8 @@ const renderResult = () => {
            Icon
         } = state;
 
+        console.log(Country);
+    console.log(state);
     ward.textContent = City;
     city.textContent = Country;
     todayTemp.textContent = Math.round(CurrentTemp);
@@ -168,11 +266,11 @@ const renderResult = () => {
     dewPoint.textContent = DewPoint;
     cloud.src = `http://openweathermap.org/img/wn/${Icon}@2x.png`;
 
-    humidity1.textContent = state.day1Humidity;
-    humidity2.textContent = state.day2Humidity;
-    humidity3.textContent = state.day3Humidity;
-    humidity4.textContent = state.day4Humidity;
-    humidity5.textContent = state.day5Humidity;
+    humidity1.textContent = state.day1Humidity+"%";
+    humidity2.textContent = state.day2Humidity+"%";
+    humidity3.textContent = state.day3Humidity+"%";
+    humidity4.textContent = state.day4Humidity+"%";
+    humidity5.textContent = state.day5Humidity+"%";
 
     maxTemp1.textContent = state.day1Max;
     maxTemp2.textContent = state.day2Max;
