@@ -13,7 +13,7 @@ html {
 .container {
   min-height: 100vh;
   max-width: 100vw;
-  background-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url(../images/cloud.jpg);
+  background-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url(../images/Clouds.jpg);
   background-size: cover;
   display: flex;
   justify-content: center;
