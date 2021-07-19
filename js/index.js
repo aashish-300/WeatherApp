@@ -1,5 +1,6 @@
 const apiKey = 'bfef3cff51ce592165a333da5021e77f';
 
+const container = document.querySelector('.container');
 const searchForm = document.querySelector('.search');
 const searchInput = document.querySelector('.search__field');
 const ward = document.querySelector('.home__ward');
@@ -54,9 +55,7 @@ const day5 = document.querySelector('.day5');
 const state = {};
 
 async function success(position){ 
-    console.log(position);
     const {latitude , longitude} = position.coords;
-    console.log(latitude, longitude);
     state.lat = latitude;
     state.long = longitude;
     await getDataByCord();
@@ -72,10 +71,8 @@ function error() {
 
 window.onload = async() => { 
     if(!navigator.geolocation) {
-        console.log('Geolocation is not supported by your browser');
+        alert('Geolocation is not supported by your browser');
       } else {
-        console.log('Locating…');
-        console.log(navigator.geolocation);
         navigator.geolocation.getCurrentPosition(success,error);
       }
 }
@@ -83,9 +80,6 @@ window.onload = async() => {
 searchForm.addEventListener('submit', async(e) => {
     state.query = searchInput.value;
     searchInput.value = '';
-    console.log(state.query);
-    console.log("submitted");
-    console.log(state);
     searchData();
 })
 
@@ -112,17 +106,19 @@ const getDataByCity = async() => {
     // state.data = data;
     state.Country = data.city.country;
     state.City = data.city.name;
+    console.log(data);
 };
 
 const getDataByCord = async() => {
     const weatherDaily = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${state.lat}&lon=${state.long}&appid=${apiKey}`).then(e => {return e.json();});
-    console.log(weatherDaily.timezone);
-    if(!state.city){
+    // console.log(weatherDaily);
+    if(!state.City){
         const place = weatherDaily.timezone;
         const word = place.split('/');
-        console.log(word[1]);
-        state.query = word[1];
-        await getDataByCity();
+        // console.log(word[1]);
+        state.City = word[1];
+        state.Country = word[0];
+        // await getDataByCity();
     }
    
 
@@ -131,7 +127,7 @@ const getDataByCord = async() => {
     const {current, daily} = weatherDaily;
     // state.weatherDaily = weatherDaily;
     state.CurrentTemp = Math.round(current.temp-273);
-    state.WeatherCondtion = current.weather[0].description;
+    state.WeatherCondtion = current.weather[0].main;
     state.FeelsLike = Math.round(current.feels_like-273);
     state.WindSpeed = current.wind_speed;
     state.Visibility = current.visibility/1000;
@@ -139,6 +135,7 @@ const getDataByCord = async() => {
     state.Pressure = current.pressure;
     state.DewPoint = Math.round(current.dew_point-273);
     state.Icon = current.weather[0].icon;
+    // state.backImage = current.weather[0].main;
 
     //5days forecast cloud icon
     state.day1CloudIcon = daily[0].weather[0].icon;
@@ -171,7 +168,7 @@ const getDataByCord = async() => {
 
 
 const getResult = async() => {
-    console.log(apiKey,"defined");
+    // console.log(apiKey,"defined");
 
     //get data from api using city name
 
@@ -251,20 +248,34 @@ const renderResult = () => {
            Icon
         } = state;
 
-        console.log(Country);
-    console.log(state);
+        // console.log(Country);
+    // console.log(state);
     ward.textContent = City;
     city.textContent = Country;
-    todayTemp.textContent = Math.round(CurrentTemp);
+    todayTemp.innerHTML = Math.round(CurrentTemp);
     presentTime.textContent = `${Hour}:${Minute} ${Timezone}`;
     weatherCondtion.textContent = WeatherCondtion;
-    feelsLike.textContent = FeelsLike;
+    feelsLike.innerHTML = `${FeelsLike} <span>&#176;</span>`;
     windSpeed.textContent = WindSpeed;
     visibility.textContent = Visibility;
     humidity.textContent = Humidity;
     pressure.textContent = Pressure;
-    dewPoint.textContent = DewPoint;
+    dewPoint.innerHTML = `${DewPoint} <span>&#176;</span>`;
     cloud.src = `http://openweathermap.org/img/wn/${Icon}@2x.png`;
+
+    const clouds = ["Thunderstorm","Snow","Clouds","Rain","Clear","Drizzle"];
+    if(clouds.includes(WeatherCondtion)){
+        console.log('included');
+        container.style.backgroundImage = `linear-gradient(
+            to bottom right,
+            rgba(0, 0, 0, 0.3),
+            rgba(0, 0, 0, 0.4)
+          ),url('../images/${WeatherCondtion}.jpg')`;
+    }
+    else{
+        console.log('not included');
+        container.style.backgroundImage = "url('../images/Clear.jpg')";
+    }
 
     humidity1.textContent = state.day1Humidity+"%";
     humidity2.textContent = state.day2Humidity+"%";
@@ -272,23 +283,25 @@ const renderResult = () => {
     humidity4.textContent = state.day4Humidity+"%";
     humidity5.textContent = state.day5Humidity+"%";
 
-    maxTemp1.textContent = state.day1Max;
-    maxTemp2.textContent = state.day2Max;
-    maxTemp3.textContent = state.day3Max;
-    maxTemp4.textContent = state.day4Max;
-    maxTemp5.textContent = state.day5Max;
+    maxTemp1.innerHTML = `${state.day1Max} <span>&#176;</span>`;
+    maxTemp2.innerHTML = `${state.day2Max} <span>&#176;</span>`;
+    maxTemp3.innerHTML = `${state.day3Max} <span>&#176;</span>`;
+    maxTemp4.innerHTML = `${state.day4Max} <span>&#176;</span>`;
+    maxTemp5.innerHTML = `${state.day5Max} <span>&#176;</span>`;
 
-    minTemp1.textContent = state.day1Min;
-    minTemp2.textContent = state.day2Min;
-    minTemp3.textContent = state.day3Min;
-    minTemp4.textContent = state.day4Min;
-    minTemp5.textContent = state.day5Min;
+    minTemp1.innerHTML = `${state.day1Min} <span>&#176;</span>`;
+    minTemp2.innerHTML = `${state.day2Min} <span>&#176;</span>`;
+    minTemp3.innerHTML = `${state.day3Min} <span>&#176;</span>`;
+    minTemp4.innerHTML = `${state.day4Min} <span>&#176;</span>`;
+    minTemp5.innerHTML = `${state.day5Min} <span>&#176;</span>`;
 
     day1.textContent = state.Day1;
     day2.textContent = state.Day2;
     day3.textContent = state.Day3;
     day4.textContent = state.Day4;
     day5.textContent = state.Day5;
+
+    console.log(state);
     
 };
 
@@ -306,4 +319,4 @@ const currentTime = () => {
     state.Day5 = day[date.getDay()+4];
 }
 
-console.log(state);
+// console.log(state);
