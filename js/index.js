@@ -261,7 +261,7 @@ const renderResult = () => {
     humidity.textContent = Humidity;
     pressure.textContent = Pressure;
     dewPoint.innerHTML = `${DewPoint} <span>&#176;</span>`;
-    cloud.src = `http://openweathermap.org/img/wn/${Icon}@2x.png`;
+    cloud.src = `https://openweathermap.org/img/wn/${Icon}@2x.png`;
 
     const clouds = ["Thunderstorm","Snow","Clouds","Rain","Clear","Drizzle"];
     if(clouds.includes(WeatherCondtion)){
