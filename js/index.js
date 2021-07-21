@@ -78,38 +78,54 @@ window.onload = async() => {
 }
 
 searchForm.addEventListener('submit', async(e) => {
+    e.preventDefault();
     state.query = searchInput.value;
     searchInput.value = '';
+    console.log('before search data');
     searchData();
 })
 
 const searchData = async() => { 
     if(state.query){
         try{
+            console.log("before time");
             currentTime();
+            console.log("before get result");
             await getResult();
+            console.log("before renderResult");
             renderResult();  
         }catch(err){
-            alert('something goes wrong!');
+            alert(err.message);
             console.log(err);
         }
     }
 }
 
 const getDataByCity = async() => { 
-    const data = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${state.query}&appid=${apiKey}`).then(e =>{ return e.json();});
-    const latlong = data.city.coord;
+    console.log('city start');
+    try{
+        console.log(`${state.query} inside city api search`);
+        const data = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${state.query}&appid=${apiKey}`).then(e =>{ return e.json();});
+        console.log('data inside city');
+        const latlong = data.city.coord;
+       console.log(data);
+        //store data in global object state
+        state.lat = latlong.lat;
+        state.long = latlong.lon;
+        // state.data = data;
+        state.Country = data.city.country;
+        state.City = data.city.name;
+        console.log(data);
+        console.log('city end')
+    }catch(err){
+        alert(err.message);
+        console.log(err.message);
+    }
    
-    //store data in global object state
-    state.lat = latlong.lat;
-    state.long = latlong.lon;
-    // state.data = data;
-    state.Country = data.city.country;
-    state.City = data.city.name;
-    console.log(data);
 };
 
 const getDataByCord = async() => {
+    console.log('cord start')
     const weatherDaily = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${state.lat}&lon=${state.long}&appid=${apiKey}`).then(e => {return e.json();});
     // console.log(weatherDaily);
     if(!state.City){
@@ -119,6 +135,7 @@ const getDataByCord = async() => {
         state.City = word[1];
         state.Country = word[0];
         // await getDataByCity();
+        console.log('cord end')
     }
    
 
@@ -317,6 +334,7 @@ const currentTime = () => {
     state.Day3 = day[date.getDay()+2];
     state.Day4 = day[date.getDay()+3];
     state.Day5 = day[date.getDay()+4];
+    console.log('inside time');
 }
 
 // console.log(state);
